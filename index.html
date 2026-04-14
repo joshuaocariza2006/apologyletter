@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apology Letter</title>
+    <link href="https://fonts.googleapis.com/css2?family=La+Belle+Aurore&family=Itim&family=Playfair+Display:italic,wght@600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #e6f7ff;
+            --env-color: #ffffff;
+            --pocket-back: #c5ebfe;
+            --accent: #97d8f9;
+            --text-dark: #336699;
+            --paper: #ffffff;
+        }
+
+        body {
+            background-color: var(--bg);
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 20px;
+            font-family: 'Itim', cursive;
+            overflow-x: hidden;
+            box-sizing: border-box;
+            color: var(--text-dark);
+        }
+
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 320px;
+            margin-top: 40px;
+        }
+
+        .letter {
+            width: 100%;
+            height: 0;
+            background: var(--paper);
+            border-radius: 8px;
+            padding: 0 20px;
+            overflow: hidden;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(151, 216, 249, 0.4);
+            margin-bottom: -100px; 
+            z-index: 1; 
+            position: relative;
+            border: 2px solid #b3e6ff;
+        }
+
+        .open .letter {
+            height: auto;
+            min-height: 380px;
+            padding: 30px 20px;
+            opacity: 1;
+            margin-bottom: 30px;
+            z-index: 100 !important; 
+        }
+
+        .envelope {
+            position: relative;
+            width: 300px;
+            height: 190px;
+            background: var(--env-color);
+            border-radius: 0 0 12px 12px;
+            cursor: pointer;
+            z-index: 10; 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: transform 0.8s ease;
+        }
+
+        .open .envelope {
+            transform: translateY(20px); 
+        }
+
+        .pocket {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--env-color);
+            z-index: 5; 
+            border-radius: 0 0 12px 12px;
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            padding-bottom: 30px;
+            box-sizing: border-box;
+        }
+
+        .pocket::after {
+            content: "";
+            position: absolute;
+            top: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 340px;
+            height: 110px;
+            background: var(--pocket-back);
+            z-index: -1;
+            border-radius: 50% 50% 0 0;
+        }
+
+        .flap {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 120px;
+            background: var(--accent);
+            transform-origin: top;
+            transition: transform 0.6s ease, z-index 0.6s;
+            z-index: 20; 
+            border-radius: 100px 100px 0 0;
+            clip-path: polygon(0 0, 100% 0, 50% 100%, 50% 100%);
+        }
+
+        .open .flap { 
+            transform: rotateX(180deg); 
+            z-index: 0; 
+        }
+
+        .seal {
+            position: absolute;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 50px;
+            background: #73c8f8;
+            border-radius: 50%;
+            z-index: 25;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .seal::after { 
+            content: "";
+            width: 30px;
+            height: 15px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: -10px 2px 0 0 white, 10px 2px 0 0 white;
+        }
+        
+        .open .seal { opacity: 0; pointer-events: none; }
+
+        .letter h2 { margin: 0 0 15px 0; font-size: 1.5rem; }
+        .letter p { color: #555; line-height: 1.6; font-size: 0.95rem; margin: 12px 0; }
+        .letter img { 
+            width: 100%; 
+            max-width: 240px; 
+            border-radius: 8px; 
+            margin: 15px auto; 
+            display: block; 
+            border: 2px solid #b3e6ff;
+        }
+
+        .hint { 
+            margin-top: 30px;
+            color: #888; 
+            letter-spacing: 3px; 
+            text-transform: uppercase; 
+            font-size: 0.75rem; 
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .hint::before, .hint::after { content: "☁"; color: #bce6ff; }
+    </style>
+</head>
+<body>
+
+    <div class="main-container" id="mainContainer">
+        <div class="letter" id="letter">
+            <h2>I'm Sorry.</h2>
+            <p>Im sorry that i didnt get a chance to play with you in a game, I know that u are playing in that game alone and i didnt noticed  . I hope you will forgive me.</p>
+            <img src="meh.gif" alt="Memory">
+            <p>I hope you will accept this apology of mine i made and this will not happen again</p>
+            <p style="font-weight: bold; color: var(--accent);">Any decisions made from you will be respected.</p>
+        </div>
+
+        <div class="envelope" id="env" onclick="toggle()">
+            <div class="flap"></div>
+            <div class="pocket">
+                <div style="font-family: 'La Belle Aurore', cursive; color: #55aaff; text-align: center; position: relative; z-index: 6;">
+                    I'm Sorry,<br>From Joshua 
+                </div>
+            </div>
+            <div class="seal"></div>
+        </div>
+
+        <div class="hint" id="hint">Tap to Unlock</div>
+    </div>
+
+    <script>
+        function toggle() {
+            const container = document.getElementById('mainContainer');
+            const hint = document.getElementById('hint');
+            container.classList.toggle('open');
+            
+            if(container.classList.contains('open')) {
+                hint.innerText = "Click to close";
+            } else {
+                hint.innerText = "Tap to Unlock";
+            }
+        }
+    </script>
+</body>
+</html>
